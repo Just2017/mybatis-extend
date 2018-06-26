@@ -13,6 +13,7 @@
     <url>https://github.com/BobJiangGit/mybatis-extend</url>
     <description>mybatis-extend, 对mybatis做了一个拓展，主要包括MBG的拓展和分页插件</description>
 
+
     <developers>
         <developer>
             <name>Bob Jiang</name>
@@ -29,8 +30,32 @@
     <modules>
         <module>mybatis-generic</module>
         <module>mybatis-generator-extend</module>
-        <module>mybatis-demo</module>
         <module>mybatis-page</module>
     </modules>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <url>http://192.168.78.128:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-snapshots</id>
+            <url>http://192.168.78.128:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>versions-maven-plugin</artifactId>-->
+                <!--<version>2.3</version>-->
+                <!--<configuration>-->
+                    <!--<generateBackupPoms>false</generateBackupPoms>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
+
 
 </project>

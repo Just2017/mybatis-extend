@@ -79,6 +79,7 @@ public abstract class GenericDialect implements Dialect {
     }
 
     public PageList buildPageList(List resultList, Page page, int totalRows) {
+        System.out.println("resultList : " + resultList +" \r\n| page.getPage_num() : " + page.getPage_num() + " \r\n| page.getPage_size() : " + page.getPage_size() +" \r\ntotalRows : " + totalRows);
         return new PageList(resultList, page.getPage_num(), page.getPage_size(), totalRows);
     }
 

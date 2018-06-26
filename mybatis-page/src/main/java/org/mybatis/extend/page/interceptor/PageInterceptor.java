@@ -55,7 +55,9 @@ public class PageInterceptor implements Interceptor {
             if (totalRows > 0) {
                 return queryPage(executor, ms, parameter, resultHandler, boundSql, additionalParameters, totalRows);
             } else {
-                return dialect.buildPageList(new ArrayList(), new Page(), totalRows);
+                Page page = dialect.getPageParameter(parameter);
+                page.setPage_num(1);
+                return dialect.buildPageList(new ArrayList(),new Page(), totalRows);
             }
         }
         return invocation.proceed();
@@ -76,6 +78,13 @@ public class PageInterceptor implements Interceptor {
         BoundSql countSql = dialect.getCountSql(ms, boundSql, parameter, additionalParameters);
 
         List countResultList = executor.query(countMs, parameter, RowBounds.DEFAULT, resultHandler, countKey, countSql);
+        // 如果时进行分组了，返回分组的大小
+        if(countResultList.size() == 0) countResultList.add(0);
+        else if(countResultList.size() > 1) {
+            int temp = countResultList.size();
+            countResultList.clear();
+            countResultList.add(temp);
+        }
         Integer count = (Integer) countResultList.get(0);
         return count.intValue();
     }

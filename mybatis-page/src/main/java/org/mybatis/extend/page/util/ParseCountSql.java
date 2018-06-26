@@ -15,9 +15,11 @@ public class ParseCountSql {
             int orderIndex = sql.lastIndexOf("order by");
             orderIndex = orderIndex != -1 ? orderIndex : sql.length();
 
+            System.out.println("\r\n come from mybatis-extend , and sql = " + sql);
             String selectBody = sql.substring(index, orderIndex);
             return "select count(1)" + selectBody;
         } else {
+            System.out.println("\r\n come from mybatis-extend , sql = " + sql );
             return StringTools.append("select count(1) from (", sql, ") tmp_count");
         }
     }
